@@ -1,5 +1,12 @@
 body {
-  font-size: 18pt;
+  font-size: 20pt;
   text-align: center;
   background: linear-gradient(to right, beige, green);
+}
+
+/* media query */
+@media all and (max-width: 500px) {
+  body {
+    font-size: 11pt;
+  }
 }
