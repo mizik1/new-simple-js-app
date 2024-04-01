@@ -4,12 +4,29 @@ let pokemonList = [
   { name: "Squirtle", height: 1.08, types: ["water"] },
 ];
 
+// container for HTML
+const container = document.body;
+
 for (let i = 0; i < pokemonList.length; i++) {
   if (pokemonList[i].height < 1.5) {
-    document.write(pokemonList[i].name + " height: " + pokemonList[i].height + " - Wow! This is a short pokemon! ");
+    document.write(
+      '<div class="pokemon-info">' +
+        pokemonList[i].name +
+        " height: " +
+        pokemonList[i].height +
+        " - Wow! This is a short pokemon! "
+    );
   } else if (pokemonList[i].height > 1.5 && pokemonList[i].height < 4.5) {
-    document.write(pokemonList[i].name + " height: " + pokemonList[i].height + " - Wow! This is a medium pokemon! " + "<br>");
+    document.write(
+      '<div class="pokemon-info">' +
+        pokemonList[i].name +
+        " height: " +
+        pokemonList[i].height +
+        " - Wow! This is a medium pokemon! "
+    );
   } else {
-    document.write(pokemonList[i].name + " height: " + pokemonList[i].height + " - Wow! This is a tall pokemon!" + "<br>");
+    document.write(
+      '<div class="pokemon-info">' + pokemonList[i].name + " height: " + pokemonList[i].height + " - Wow! This is a tall pokemon!"
+    );
   }
 }
