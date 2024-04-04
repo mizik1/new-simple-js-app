@@ -7,26 +7,18 @@ let pokemonList = [
 // container for HTML
 const container = document.body;
 
-for (let i = 0; i < pokemonList.length; i++) {
-  if (pokemonList[i].height < 1.5) {
+pokemonList.forEach(function (pokemon) {
+  if (pokemon.height < 1.5) {
     document.write(
-      '<div class="pokemon-info">' +
-        pokemonList[i].name +
-        " height: " +
-        pokemonList[i].height +
-        " - Wow! This is a short pokemon! "
+      '<div class="pokemon-info">' + pokemon.name + " height: " + pokemon.height + " - Wow! This is a short pokemon! "
     );
-  } else if (pokemonList[i].height > 1.5 && pokemonList[i].height < 4.5) {
+  } else if (pokemon.height > 1.5 && pokemon.height < 4.5) {
     document.write(
-      '<div class="pokemon-info">' +
-        pokemonList[i].name +
-        " height: " +
-        pokemonList[i].height +
-        " - Wow! This is a medium pokemon! "
+      '<div class="pokemon-info">' + pokemon.name + " height: " + pokemon.height + " - Wow! This is a medium pokemon! "
     );
   } else {
     document.write(
-      '<div class="pokemon-info">' + pokemonList[i].name + " height: " + pokemonList[i].height + " - Wow! This is a tall pokemon!"
+      '<div class="pokemon-info">' + pokemon.name + " height: " + pokemon.height + " - Wow! This is a tall pokemon!"
     );
   }
-}
+});
