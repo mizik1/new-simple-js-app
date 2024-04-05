@@ -12,12 +12,12 @@ let pokemonRepository = (function () {
     return pokemonList;
   }
 
-  // Add function adds item to pokemonList
+  // Adds function adds item to pokemonList
   function add(item) {
     return pokemonList.push(item);
   }
 
-  // Expose private data in getAll and add functions
+  // Exposes private data in getAll and add functions
   return {
     getAll,
     add,
