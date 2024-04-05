@@ -1,9 +1,20 @@
-// pokemon array
-let pokemonList = [
-  { name: "Bulbasur", height: 2.04, types: ["grass", "poison"] },
-  { name: "Charizard", height: 5.07, types: ["fire", "flying"] },
-  { name: "Squirtle", height: 1.08, types: ["water"] },
-];
+// Pokemon data
+let pokemonList = (function () {
+  return [
+    { name: "Bulbasur", height: 2.04, types: ["grass", "poison"] },
+    { name: "Charizard", height: 5.07, types: ["fire", "flying"] },
+    { name: "Squirtle", height: 1.08, types: ["water"] },
+  ];
+})();
+
+// Pokemon repository to hold return from IIFE
+let pokemonRepository = function () {
+  let pokemonList = [];
+};
+
+function getAll() {
+  return pokemonList;
+}
 
 // container for HTML
 const container = document.body;
