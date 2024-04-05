@@ -1,3 +1,4 @@
+// pokemon array
 let pokemonList = [
   { name: "Bulbasur", height: 2.04, types: ["grass", "poison"] },
   { name: "Charizard", height: 5.07, types: ["fire", "flying"] },
@@ -7,6 +8,7 @@ let pokemonList = [
 // container for HTML
 const container = document.body;
 
+// Categorizes pokemons by height
 pokemonList.forEach(function (pokemon) {
   if (pokemon.height < 1.5) {
     document.write(
