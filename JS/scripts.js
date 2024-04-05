@@ -12,9 +12,15 @@ let pokemonRepository = (function () {
     return pokemonList;
   }
 
-  // Exposes private data in IIFE by returing getAll
+  // Add function adds item to pokemonList
+  function add(item) {
+    pokemonList.push(item);
+  }
+
+  // Expose private data in getAll and add functions
   return {
     getAll,
+    add,
   };
 })();
 
