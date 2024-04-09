@@ -27,6 +27,13 @@ let pokemonRepository = (function () {
 // container for HTML
 // const container = document.body;
 
+// New Pokemon using pokemonRepository.add
+pokemonRepository.add({
+  name: "Charmander",
+  height: 6,
+  types: ["fire"],
+});
+
 // Filters pokemons by height. For Loop pulls from pokemonRepository (pokemon)
 pokemonRepository.getAll().forEach(function (pokemon) {
   if (pokemon.height < 1.5) {
@@ -42,11 +49,4 @@ pokemonRepository.getAll().forEach(function (pokemon) {
       '<div class="pokemon-info">' + pokemon.name + " height: " + pokemon.height + " - Wow! This is a tall pokemon!"
     );
   }
-});
-
-// New Pokemon using pokemonRepository.add
-pokemonRepository.add({
-  name: "Charmander",
-  height: 6,
-  types: ["fire"],
 });
