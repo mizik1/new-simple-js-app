@@ -2,16 +2,30 @@ body {
   background: linear-gradient(to right, beige, green);
 }
 
-/* media query */
-@media all and (max-width: 500px) {
-  body {
-    font-size: 11pt;
-  }
-}
-
 .pokemon-info {
   display: block;
   white-space: pre-line;
   font-size: 20pt;
   text-align: center;
+}
+
+.button-class {
+  background-color: purple;
+  color: white;
+  display: inline-block;
+  padding: 16px 32px;
+  margin: 4px 2px;
+  -webkit-transition-duration: 0.4s;
+  transition-duration: 0.4s;
+  cursor: pointer;
+  border-radius: 5px;
+  width: 150px;
+  text-align: center;
+}
+
+/* media query */
+@media all and (max-width: 500px) {
+  body {
+    font-size: 11pt;
+  }
 }
