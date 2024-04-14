@@ -23,9 +23,6 @@ let pokemonRepository = (function () {
     let button = document.createElement("button"); // created "button" tag
     button.innerText = pokemon.name; // linked text from pokemonRepository
     button.classList.add("button-class"); // added styles defined in CSS "button-class"
-    button.addEventListener("click", function () {
-      showDetails(pokemon);
-    });
     listItem.appendChild(button); // appended button into "li"
     pokemonList.appendChild(listItem); // appended 'li' into parent element
     button.addEventListener("click", function (event) {
