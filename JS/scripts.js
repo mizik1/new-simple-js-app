@@ -1,20 +1,20 @@
 // Pokemon data is private in this method by wrapping in IIFE
 let pokemonRepository = (function () {
-  // Pokemon data array
-  let pokemonList = [
-    { name: "Bulbasur", height: 2.04, types: ["grass", "poison"] },
-    { name: "Charizard", height: 5.07, types: ["fire", "flying"] },
-    { name: "Squirtle", height: 1.08, types: ["water"] },
-  ];
+  let pokemonList = [];
+  let apiUrl = "https://pokeapi.co/api/v2/pokemon/";
+
+  // Adds function adds item to pokemonList
+  function add(pokemon) {
+    if (typeof pokemon === "object" && "name" in pokemon) {
+      pokemonList.push(pokemon);
+    } else {
+      console.log("pokemon is not correct");
+    }
+  }
 
   // Returns pokemonList
   function getAll() {
     return pokemonList;
-  }
-
-  // Adds function adds item to pokemonList
-  function add(item) {
-    return pokemonList.push(item);
   }
 
   function addListItem(pokemon) {
@@ -28,29 +28,70 @@ let pokemonRepository = (function () {
     });
     listItem.appendChild(button); // appended button into "li"
     pokemonList.appendChild(listItem); // appended 'li' into parent element
+    button.addEventListener("click", function (event) {
+      showDetails(pokemon);
+    });
   }
 
-  function showDetails(pokemon) {
-    console.log(pokemon);
+  // add function loadlist below - promise function
+  function loadList() {
+    return fetch(apiUrl)
+      .then(function (response) {
+        return response.json();
+      })
+      .then(function (json) {
+        json.results.forEach(function (item) {
+          let pokemon = {
+            name: item.name,
+            detailsUrl: item.url,
+          };
+          add(pokemon);
+          console.log(pokemon);
+        });
+      })
+      .catch(function (e) {
+        console.error(e);
+      });
   }
 
-  // Exposes private data in getAll, add and showDetails functions
+  // loadDetails function gets details after clicking on box
+  function loadDetails(item) {
+    let url = item.detailsUrl;
+    return fetch(url)
+      .then(function (response) {
+        return response.json();
+      })
+      .then(function (details) {
+        // now add details to the item
+        item.imageUrl = details.sprites.front_default;
+        item.height = details.height;
+        item.types = details.types;
+      })
+      .catch(function (e) {
+        console.error(e);
+      });
+  }
+
+  function showDetails(item) {
+    pokemonRepository.loadDetails(item).then(function () {
+      console.log(item);
+    });
+  }
+
+  // "return" exposes private data in getAll, add and showDetails functions
   return {
-    getAll: getAll,
     add: add,
+    getAll: getAll,
     addListItem: addListItem,
+    loadList: loadList,
+    loadDetails: loadDetails,
     showDetails: showDetails,
   };
 })();
 
-// New Pokemon using pokemonRepository.add
-pokemonRepository.add({
-  name: "Charmander",
-  height: 6,
-  types: ["fire"],
-});
-
 // Filters pokemons by height.
-pokemonRepository.getAll().forEach(function (pokemon) {
-  pokemonRepository.addListItem(pokemon);
+pokemonRepository.loadList().then(function () {
+  pokemonRepository.getAll().forEach(function (pokemon) {
+    pokemonRepository.addListItem(pokemon);
+  });
 });
