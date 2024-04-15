@@ -1,5 +1,6 @@
 // Pokemon data is private in this method by wrapping in IIFE
 let pokemonRepository = (function () {
+  // gets data from pokemon api
   let pokemonList = [];
   let apiUrl = "https://pokeapi.co/api/v2/pokemon/";
 
@@ -12,7 +13,7 @@ let pokemonRepository = (function () {
     }
   }
 
-  // Returns pokemonList
+  //   // getAll returns data from pokemon api
   function getAll() {
     return pokemonList;
   }
@@ -30,7 +31,7 @@ let pokemonRepository = (function () {
     });
   }
 
-  // add function loadlist below - promise function
+  // loadlist fetches a list of pokemon from external API and adds to pokemonList using add()
   function loadList() {
     return fetch(apiUrl)
       .then(function (response) {
@@ -51,7 +52,7 @@ let pokemonRepository = (function () {
       });
   }
 
-  // loadDetails function gets details after clicking on box
+  // loadDetails fetches details after clicking on box
   function loadDetails(item) {
     let url = item.detailsUrl;
     return fetch(url)
@@ -69,6 +70,7 @@ let pokemonRepository = (function () {
       });
   }
 
+  // loads the details of a pokemon after fetching it
   function showDetails(item) {
     pokemonRepository.loadDetails(item).then(function () {
       console.log(item);
