@@ -2,7 +2,7 @@
 let pokemonRepository = (function () {
   // gets data from pokemon api
   let pokemonList = [];
-  let apiUrl = "https://pokeapi.co/api/v2/pokemon/";
+  let apiUrl = "https://pokeapi.co/api/v2/pokemon/?limit=20";
 
   // Adds function adds item to pokemonList
   function add(pokemon) {
@@ -13,19 +13,19 @@ let pokemonRepository = (function () {
     }
   }
 
-  //   // getAll returns data from pokemon api
+  // // getAll returns data from pokemon api
   function getAll() {
     return pokemonList;
   }
 
   function addListItem(pokemon) {
-    let pokemonList = document.querySelector(".pokemon-list"); // uses "pokemon-list" class defined in index file
+    let containerList = document.querySelector(".pokemon-list"); // changed variable to containerList to avoid conflicts
     let listItem = document.createElement("li"); // created "li" element
     let button = document.createElement("button"); // created "button" tag
     button.innerText = pokemon.name; // linked text from pokemonRepository
     button.classList.add("button-class"); // added styles defined in CSS "button-class"
     listItem.appendChild(button); // appended button into "li"
-    pokemonList.appendChild(listItem); // appended 'li' into parent element
+    containerList.appendChild(listItem); // appended 'li' into parent element
     button.addEventListener("click", function (event) {
       showDetails(pokemon);
     });
@@ -70,10 +70,44 @@ let pokemonRepository = (function () {
       });
   }
 
-  // loads the details of a pokemon after fetching it
+  // revised showDetails modal
   function showDetails(item) {
     pokemonRepository.loadDetails(item).then(function () {
-      console.log(item);
+      let modalContainer = document.querySelector("#modal-container");
+      modalContainer.innerHTML = "";
+
+      let modal = document.createElement("div");
+      modal.classList.add("modal");
+
+      // Example: Adding a close button
+      let closeButton = document.createElement("button");
+      closeButton.innerText = "Close";
+      closeButton.classList.add("modal-close");
+      closeButton.addEventListener("click", () => {
+        modalContainer.classList.remove("is-visible");
+      });
+
+      // adds pokemon details
+      let titleElement = document.createElement("h1");
+      titleElement.innerText = item.name;
+
+      let imageElement = document.createElement("img");
+      imageElement.src = item.imageUrl;
+
+      let heightElement = document.createElement("p");
+      heightElement.innerText = "Height: " + item.height + " meters";
+
+      // appends elements to modal
+      modal.appendChild(closeButton);
+      modal.appendChild(titleElement);
+      modal.appendChild(imageElement);
+      modal.appendChild(heightElement);
+
+      // appends modal to modalContainer
+      modalContainer.appendChild(modal);
+
+      // displays modal
+      modalContainer.classList.add("is-visible");
     });
   }
 
@@ -94,3 +128,62 @@ pokemonRepository.loadList().then(function () {
     pokemonRepository.addListItem(pokemon);
   });
 });
+// previous showDetails function
+// function showDetails(item) {
+//   pokemonRepository.loadDetails(item).then(function () {
+//     console.log(item);
+//   });
+// }
+
+// adding modal that can show each pokemon
+// function showDetails(item) {
+//   pokemonRepository.loadDetails(item).then(function () {
+//     showModal(item);
+//     let modalContainer = document.querySelector("#modal-container");
+//     let modal = document.createElement("div");
+//     modal.classList.add("modal");
+
+//     // the close button
+//     let closeButton = document.createElement("button");
+//     closeButton.classList.add("modal-close");
+//     closeButton.innerText = "Close";
+//     closeButtonElement.addEventListener("click", hideModal);
+
+//     // the title element
+//     let titleElement = document.createElement("h1");
+//     titleElement.innerText = title;
+
+//     let contentElement = document.createElement("p");
+//     contentElement.innerText = text;
+
+//     modal.appendChild(closeButtonElement);
+//     modal.appendChild(titleElement);
+//     modal.appendChild(contentElement);
+//     modalContainer.appendChild(modal);
+
+//     modalContainer.classList.add("is-visible");
+
+//     // hide modal
+//     function hideModal() {
+//       let modalContainer = document.querySelector("#modal-container");
+//       modalContainer.classList.remove("is-visible");
+//     }
+//     window.addEventListener("keydown", (e) => {
+//       let modalContainer = document.querySelector("#modal-container");
+//       if (e.key === "Escape" && modalContainer.classList.contains("is-visible")) {
+//         hideModal();
+//       }
+//     });
+
+//     modalContainer.addEventListener("click", (e) => {
+//       let target = e.target;
+//       if (target === modalContainer) {
+//         hideModal();
+//       }
+//     });
+
+//     document.querySelector("#show-modal").addEventListener("click", () => {
+//       showModal();
+//     });
+//   });
+// }
