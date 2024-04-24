@@ -32,7 +32,10 @@ let pokemonRepository = (function () {
     button.classList.add("button-class"); // added styles defined in CSS "button-class"
     listItem.appendChild(button); // appended button into "li"
     containerList.appendChild(listItem); // appended 'li' into parent element
+    button.setAttribute("data-toggle", "modal");
+    button.setAttribute("data-target", "#exampleModal");
     button.addEventListener("click", function (event) {
+      console.log("%c[Debug] here", "background-color: orange; font-size: 20px; color:black;");
       showDetails(pokemon);
     });
   }
@@ -83,19 +86,8 @@ let pokemonRepository = (function () {
       modalContainer.innerHTML = "";
 
       let modal = document.createElement("div");
-      modal.classList.add("modal");
 
-      // Example: Adding a close button
-      let closeButton = document.createElement("button");
-      closeButton.innerText = "Close";
-      closeButton.classList.add("modal-close");
-      closeButton.addEventListener("click", () => {
-        modalContainer.classList.remove("is-visible");
-      });
-
-      // adds pokemon details
-      let titleElement = document.createElement("h1");
-      titleElement.innerText = item.name;
+      modalTitle.innerText = item.name;
 
       let imageElement = document.createElement("img");
       imageElement.src = item.imageUrl;
@@ -104,16 +96,10 @@ let pokemonRepository = (function () {
       heightElement.innerText = "Height: " + item.height + " meters";
 
       // appends elements to modal
-      modal.appendChild(closeButton);
-      modal.appendChild(titleElement);
-      modal.appendChild(imageElement);
+      modal.appendChild(imageElements);
       modal.appendChild(heightElement);
-
-      // appends modal to modalContainer
+      // appends modal to modal container
       modalContainer.appendChild(modal);
-
-      // displays modal
-      modalContainer.classList.add("is-visible");
     });
   }
 
@@ -129,6 +115,7 @@ let pokemonRepository = (function () {
 })();
 
 document.addEventListener("DOMContentLoaded", function () {
+  console.log("HEY");
   pokemonRepository.loadList().then(function () {
     // Now the data is loaded
     pokemonRepository.getAll().forEach(function (pokemon) {
@@ -137,12 +124,13 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 
+// OLD CODE
 // Filters pokemons by height.
-pokemonRepository.loadList().then(function () {
-  pokemonRepository.getAll().forEach(function (pokemon) {
-    pokemonRepository.addListItem(pokemon);
-  });
-});
+// pokemonRepository.loadList().then(function () {
+//   pokemonRepository.getAll().forEach(function (pokemon) {
+//     pokemonRepository.addListItem(pokemon);
+//   });
+// });
 // previous showDetails function
 // function showDetails(item) {
 //   pokemonRepository.loadDetails(item).then(function () {
@@ -202,3 +190,26 @@ pokemonRepository.loadList().then(function () {
 //     });
 //   });
 // }
+
+// let closeButton = document.createElement("button");
+// closeButton.innerText = "Close";
+// closeButton.classList.add("modal-close");
+// closeButton.addEventListener("click", () => {
+//   modalContainer.classList.remove("is-visible");
+// });
+
+// adds pokemon details
+// let titleElement = document.createElement("h1");
+// titleElement.innerText = item.name;
+
+// appends elements to modal
+// modal.appendChild(closeButton);
+// modal.appendChild(titleElement);
+// modal.appendChild(imageElement);
+// modal.appendChild(heightElement);
+
+// appends modal to modalContainer
+// modalContainer.appendChild(modal);
+
+// displays modal
+// modalContainer.classList.add("is-visible");
