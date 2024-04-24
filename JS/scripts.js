@@ -128,6 +128,15 @@ let pokemonRepository = (function () {
   };
 })();
 
+document.addEventListener("DOMContentLoaded", function () {
+  pokemonRepository.loadList().then(function () {
+    // Now the data is loaded
+    pokemonRepository.getAll().forEach(function (pokemon) {
+      pokemonRepository.addListItem(pokemon);
+    });
+  });
+});
+
 // Filters pokemons by height.
 pokemonRepository.loadList().then(function () {
   pokemonRepository.getAll().forEach(function (pokemon) {
