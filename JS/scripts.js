@@ -82,7 +82,8 @@ let pokemonRepository = (function () {
   // revised showDetails modal
   function showDetails(item) {
     pokemonRepository.loadDetails(item).then(function () {
-      let modalContainer = document.querySelector("#modal-container");
+      let modalContainer = document.querySelector(".modal-body");
+      let modalTitle = document.querySelector(".modal-title");
       modalContainer.innerHTML = "";
 
       let modal = document.createElement("div");
@@ -96,7 +97,7 @@ let pokemonRepository = (function () {
       heightElement.innerText = "Height: " + item.height + " meters";
 
       // appends elements to modal
-      modal.appendChild(imageElements);
+      modal.appendChild(imageElement);
       modal.appendChild(heightElement);
       // appends modal to modal container
       modalContainer.appendChild(modal);
