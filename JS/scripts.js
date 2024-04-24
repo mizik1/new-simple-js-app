@@ -18,6 +18,12 @@ let pokemonRepository = (function () {
     return pokemonList;
   }
 
+  // add Button utility classes for buttons created in JS
+  let newButton = document.createElement("button");
+  newButton.classList.add("btn", "btn-primary");
+  newButton.textContent = "Click Here";
+  document.body.appendChild(newButton);
+
   function addListItem(pokemon) {
     let containerList = document.querySelector(".pokemon-list"); // changed variable to containerList to avoid conflicts
     let listItem = document.createElement("li"); // created "li" element
