@@ -24,10 +24,11 @@ let pokemonRepository = (function () {
     getAll: n,
     addListItem: function e(t) {
       let n = document.querySelector(".pokemon-list"),
-        i = document.createElement("li"),
-        r = document.createElement("button");
+        i = document.createElement("div");
+      i.classList.add("col-md-4", "mb-4");
+      let r = document.createElement("button");
       (r.innerText = t.name),
-        r.classList.add("button-class"),
+        r.classList.add("btn", "btn-primary", "pokemon-btn"),
         i.appendChild(r),
         n.appendChild(i),
         r.setAttribute("data-toggle", "modal"),
