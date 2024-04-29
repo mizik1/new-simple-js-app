@@ -1,6 +1,6 @@
 // Pokemon data is private in this method by wrapping in IIFE
 let pokemonRepository = (function () {
-  // gets data from pokemon api
+  // gets data from pokemon api'
   let pokemonList = [];
   let apiUrl = "https://pokeapi.co/api/v2/pokemon/?limit=20";
 
@@ -20,6 +20,7 @@ let pokemonRepository = (function () {
 
   function addListItem(pokemon) {
     let containerList = document.querySelector(".pokemon-list"); // changed variable to containerList to avoid conflicts
+<<<<<<< HEAD
     let listItem = document.createElement("li"); // created "li" element
     let col = document.createElement("div");
     col.classList.add("col-md-4");
@@ -27,6 +28,15 @@ let pokemonRepository = (function () {
     button.innerText = pokemon.name; // linked text from pokemonRepository
     button.classList.add("button-class"); // added styles defined in CSS "button-class"
     col.appendChild(button);
+=======
+    let listItem = document.createElement("div"); // created "div" element
+    listItem.classList.add("col-md-4", "mb-4");
+
+    let button = document.createElement("button"); // created "button" tag
+    button.innerText = pokemon.name; // linked text from pokemonRepository
+    button.classList.add("btn", "btn-primary", "pokemon-btn"); // added styles defined in CSS "button-class"
+
+>>>>>>> main
     listItem.appendChild(button); // appended button into "li"
     containerList.appendChild(listItem); // appended 'li' into parent element
     button.setAttribute("data-toggle", "modal");
@@ -100,6 +110,40 @@ let pokemonRepository = (function () {
       modalContainer.appendChild(modal);
     });
   }
+
+  // search bar
+
+  // Function to filter Pokemon based on search input
+  function filterPokemon(searchTerm) {
+    searchTerm = searchTerm.toLowerCase();
+    return pokemonList.filter(function (pokemon) {
+      return pokemon.name.toLowerCase().includes(searchTerm);
+    });
+  }
+
+  // Function to handle search and display results
+  function handleSearch() {
+    const searchInput = document.querySelector("#searchInput");
+    const searchValue = searchInput.value.trim();
+
+    // Clear previous search results
+    const containerList = document.querySelector(".pokemon-list");
+    containerList.innerHTML = "";
+
+    // Filter Pokemon based on search term
+    const filteredPokemon = filterPokemon(searchValue);
+
+    // Display filtered Pokemon
+    filteredPokemon.forEach(function (pokemon) {
+      addListItem(pokemon);
+    });
+  }
+
+  // Event listener for search input
+  document.querySelector("#searchForm").addEventListener("submit", function (event) {
+    event.preventDefault(); // Prevent default form submission behavior
+    handleSearch();
+  });
 
   // "return" exposes private data in getAll, add and showDetails functions
   return {
