@@ -2,6 +2,11 @@ body {
   background: linear-gradient(to right, beige, green);
 }
 
+.pokemon-btn {
+  width: 100%;
+  margin-bottom: 10px;
+}
+
 .pokemon-info {
   display: block;
   white-space: pre-line;
