@@ -1,6 +1,6 @@
 // Pokemon data is private in this method by wrapping in IIFE
 let pokemonRepository = (function () {
-  // gets data from pokemon api
+  // gets data from pokemon api'
   let pokemonList = [];
   let apiUrl = "https://pokeapi.co/api/v2/pokemon/?limit=20";
 
@@ -100,6 +100,40 @@ let pokemonRepository = (function () {
       modalContainer.appendChild(modal);
     });
   }
+
+  // search bar
+
+  // Function to filter Pokemon based on search input
+  function filterPokemon(searchTerm) {
+    searchTerm = searchTerm.toLowerCase();
+    return pokemonList.filter(function (pokemon) {
+      return pokemon.name.toLowerCase().includes(searchTerm);
+    });
+  }
+
+  // Function to handle search and display results
+  function handleSearch() {
+    const searchInput = document.querySelector("#searchInput");
+    const searchValue = searchInput.value.trim();
+
+    // Clear previous search results
+    const containerList = document.querySelector(".pokemon-list");
+    containerList.innerHTML = "";
+
+    // Filter Pokemon based on search term
+    const filteredPokemon = filterPokemon(searchValue);
+
+    // Display filtered Pokemon
+    filteredPokemon.forEach(function (pokemon) {
+      addListItem(pokemon);
+    });
+  }
+
+  // Event listener for search input
+  document.querySelector("#searchForm").addEventListener("submit", function (event) {
+    event.preventDefault(); // Prevent default form submission behavior
+    handleSearch();
+  });
 
   // "return" exposes private data in getAll, add and showDetails functions
   return {

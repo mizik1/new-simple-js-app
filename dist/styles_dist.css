@@ -22,7 +22,7 @@ body {
   font-size: 17px;
 }
 .pokemon-btn {
-  width: 100%;
+  width: 50%;
   margin-bottom: 10px;
 }
 @media all and (max-width: 500px) {

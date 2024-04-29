@@ -59,9 +59,14 @@
             <a class="nav-link disabled" href="#">Disabled</a>
           </li>
         </ul>
-        <form class="form-inline my-2 my-lg-0">
+        <!-- <form class="form-inline my-2 my-lg-0">
           <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" />
           <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form> -->
+        <!-- new search bar -->
+        <form id="searchForm">
+          <input id="searchInput" type="text" placeholder="Search Pokemon..." />
+          <button type="submit">Search</button>
         </form>
       </div>
     </nav>
@@ -82,10 +87,11 @@
       </div>
     </div> -->
 
-    <ul class="pokemon-list list-group"></ul>
-    <div class="container mt-4">
-      <div class="pokemon-list row"></div>
-    </div>
+    <ul class="pokemon-list list-group">
+      <div class="container mt-4">
+        <div class="pokemon-list row"></div>
+      </div>
+    </ul>
     <!-- Modal -->
 
     <div class="modal" tabindex="-1" id="exampleModal" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
