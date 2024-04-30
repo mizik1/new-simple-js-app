@@ -20,7 +20,6 @@ let pokemonRepository = (function () {
 
   function addListItem(pokemon) {
     let containerList = document.querySelector(".pokemon-list"); // changed variable to containerList to avoid conflicts
-<<<<<<< HEAD
     let listItem = document.createElement("li"); // created "li" element
     let col = document.createElement("div");
     col.classList.add("col-md-4");
@@ -28,15 +27,6 @@ let pokemonRepository = (function () {
     button.innerText = pokemon.name; // linked text from pokemonRepository
     button.classList.add("button-class"); // added styles defined in CSS "button-class"
     col.appendChild(button);
-=======
-    let listItem = document.createElement("div"); // created "div" element
-    listItem.classList.add("col-md-4", "mb-4");
-
-    let button = document.createElement("button"); // created "button" tag
-    button.innerText = pokemon.name; // linked text from pokemonRepository
-    button.classList.add("btn", "btn-primary", "pokemon-btn"); // added styles defined in CSS "button-class"
-
->>>>>>> main
     listItem.appendChild(button); // appended button into "li"
     containerList.appendChild(listItem); // appended 'li' into parent element
     button.setAttribute("data-toggle", "modal");
