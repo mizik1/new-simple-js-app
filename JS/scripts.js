@@ -2,7 +2,7 @@
 let pokemonRepository = (function () {
   // gets data from pokemon api'
   let pokemonList = [];
-  let apiUrl = "https://pokeapi.co/api/v2/pokemon/?limit=20";
+  let apiUrl = "https://pokeapi.co/api/v2/pokemon/?limit=154";
 
   // Adds function adds item to pokemonList
   function add(pokemon) {
@@ -67,6 +67,7 @@ let pokemonRepository = (function () {
       })
       .then(function (details) {
         // now add details to the item
+        console.log(details);
         item.imageUrl = details.sprites.front_default;
         item.height = details.height;
         item.types = details.types;

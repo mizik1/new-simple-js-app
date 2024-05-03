@@ -2,6 +2,11 @@ body {
   background: linear-gradient(to right, beige, green);
 }
 
+/* removes bullet point */
+.pokemon-list {
+  list-style-type: none;
+}
+
 .pokemon-info {
   display: block;
   white-space: pre-line;
